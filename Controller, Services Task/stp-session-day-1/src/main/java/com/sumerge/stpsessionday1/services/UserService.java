@@ -1,6 +1,11 @@
 package com.sumerge.stpsessionday1.services;
 
-import com.sumerge.stpsessionday1.models.User;
+import com.sumerge.session2.Models.User;
+import com.sumerge.session2.services.StaticUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,12 +13,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class UserService {
     List<User> users=new ArrayList<>(List.of(
             new User("Ahmed",'M',20.0)
             ,new User("Mohamed",'M',18.0)
     ));
+
+
+    @Autowired
+    @Qualifier("aliceService")
+    StaticUserService aliceService;
+
+    @Autowired
+    @Qualifier("bobService")
+    StaticUserService bobService;
+
+
+
 
     public List<User> getUsersData()
     {

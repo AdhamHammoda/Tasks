@@ -1,6 +1,7 @@
 package com.sumerge.stpsessionday1.controllers;
 
-import com.sumerge.stpsessionday1.models.User;
+import com.sumerge.session2.Models.User;
+import com.sumerge.stpsessionday1.exceptions.UsersEmptyException;
 import com.sumerge.stpsessionday1.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,14 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
+
+
     @RequestMapping(method = RequestMethod.GET,value = "/get-user")
-    public List<User> getUsers()
-    {
+    public List<User> getUsers() throws UsersEmptyException {
+        if(userService.getUsersData().isEmpty())
+        {
+            throw new UsersEmptyException();
+        }
         return userService.getUsersData();
     }
 

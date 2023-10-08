@@ -1,4 +1,4 @@
-package com.sumerge.stpsessionday1.models;
+package com.sumerge.session2.Models;
 
 public class User {
     private String fullName;
